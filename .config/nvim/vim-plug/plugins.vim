@@ -15,7 +15,7 @@ Plug 'tpope/vim-surround'
 " Enter quotes and braces in pairs
 Plug 'jiangmiao/auto-pairs'
 
-" Auto completion
-Plug 'valloric/youcompleteme'
+" Autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
