@@ -68,7 +68,11 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, pipenv)
+plugins=(
+    git
+    pipenv
+    virtualenv
+    )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,4 +116,6 @@ export VISUAL="nvim"
 alias zshrc="vim ~/.zshrc"
 alias nvimrc="vim $HOME/.config/nvim/init.vim"
 alias vimrc="vim $HOME/.config/nvim/init.vim"
+alias kittyconf="vim ~/.config/kitty/kitty.conf"
 alias python="python3"
+alias pip="pip3"
