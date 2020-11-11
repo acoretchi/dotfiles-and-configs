@@ -10,6 +10,9 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 colo molokai
 set termguicolors
 
+" Setup colourizer
+lua require'colorizer'.setup()
+
 " Enable transparency in transparent terminal emulators
 " These are needed because nvim overwrite the highlights on start
 autocmd VimEnter * :hi! Normal ctermbg=NONE guibg=NONE!
@@ -40,6 +43,10 @@ set shiftround
 set shiftwidth=4
 set tabstop=4
 
+" Better indentation movement 
+vnoremap < <gv
+vnoremap > >gv
+
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
@@ -66,7 +73,7 @@ set incsearch " Incremental search
 
 " Rendering
 set encoding=utf-8
-set scrolloff=1
+set scrolloff=10
 set sidescrolloff=5
 set wrap
 
@@ -83,7 +90,7 @@ cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
 
-" Neoclide
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Neoclide
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
@@ -125,3 +132,21 @@ if exists('*complete_info')
 else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
+
+" GoTo navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
